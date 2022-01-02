@@ -1,0 +1,25 @@
+.header {
+  background-color: #e5e4e2;
+  height: 100px;
+  ul {
+    list-style: none;
+    display: flex;
+  }
+  ul > li {
+    margin: 0 1rem;
+  }
+  ul > li > a {
+    color: #899499;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &:hover {
+      color: #36454F;
+      & > span {
+        color: #36454F;
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ const HomeLayout = ({home_page_data})=>{
     
     return (
         <>
+        <i className="fas fa-island-tropical"></i>
         <div className="rounded-circle"> This is the home page</div>
         {home_page_data?.posts.map((post)=>{
             return <p> {post.title}</p>
