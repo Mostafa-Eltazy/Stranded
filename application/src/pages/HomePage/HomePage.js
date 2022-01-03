@@ -12,7 +12,6 @@ const Home = () => {
     };
     getHomePageData();
   }, []);
-  console.log("xxx", data);
   return (
     <>
       <Header/>
