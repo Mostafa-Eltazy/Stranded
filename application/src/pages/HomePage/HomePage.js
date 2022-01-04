@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/shared/Header";
+import Footer from "../../components/shared/Footer";
 import HomeApi from "../../components/homeComponents/HomeApi";
 import HomeLayout from "../../components/homeComponents/Homelayout";
 
@@ -14,8 +15,11 @@ const Home = () => {
   }, []);
   return (
     <>
-      <Header/>
-      <HomeLayout home_page_data={data} />;
+      <Header />
+      <div className="page-wrapper">
+        <HomeLayout home_page_data={data} />;
+      </div>
+      <Footer />
     </>
   );
 };

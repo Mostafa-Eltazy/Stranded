@@ -1,5 +1,5 @@
 .header {
-  background-color: #e5e4e2;
+  background-color: $main-theme-main-color;
   height: 100px;
   ul {
     list-style: none;
@@ -9,38 +9,37 @@
     margin: 0 1rem;
   }
   ul > li > a {
-    color: #899499;
+    color: $main-theme-hover-color;
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     &:hover {
-      color: #36454f;
+      color: $main-theme-sec-color;
       & > span {
-        color: #36454f;
+        color: $main-theme-sec-color;
         text-decoration: underline;
       }
     }
   }
   .active {
     font-weight: bold;
-    color: #36454f;
+    color: $main-theme-sec-color;
   }
 
   // colapps button
   .collpase-btn {
     display: none;
-    color: #899499;
+    color: $main-theme-hover-color;
     font-size: 1.5rem;
     cursor: pointer;
     &:hover {
-      color: #36454f;
+      color: $main-theme-sec-color;
     }
   }
   #collpase-btn-check {
     display: none;
   }
-  
 
   @media screen and (max-width: $screen_size__xs) {
     .collpase-btn {
@@ -55,7 +54,7 @@
       transition: all 0.5s;
       text-align: center;
       display: block;
-      background-color: #36454f;
+      background-color: $main-theme-sec-color;
       border: 1px solid;
     }
     ul > li {
@@ -65,19 +64,18 @@
     ul > li > a {
       color: #fff;
       &:hover {
-        color: #899499;
+        color: $main-theme-hover-color;
         & > span {
-          color: #899499;
+          color: $main-theme-hover-color;
           text-decoration: none;
         }
       }
     }
     .active {
-      color: #899499;
+      color: $main-theme-hover-color;
     }
 
     #collpase-btn-check:checked + ul {
-      
       right: 0;
     }
   }

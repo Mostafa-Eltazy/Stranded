@@ -1,0 +1,14 @@
+.footer {
+  background-color: $main-theme-main-color;
+  height: 137px;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  border-top-right-radius: 0.25rem;
+  border-top-left-radius: 0.25rem;
+
+  & > hr {
+    width: 95%;
+    background-color: $main-theme-sec-color;
+  }
+}
