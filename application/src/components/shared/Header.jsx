@@ -7,8 +7,8 @@ const Header = () => {
     setActive(dir);
   };
   return (
-    <header className="header px-3 py-2">
-      <div className="container d-flex justify-content-between mt-3">
+    <header className="header px-3 py-3">
+      <div className="container d-flex justify-content-between mt-4">
         <div className="d-flex align-items-center">
           BE
           <h1>
@@ -48,7 +48,7 @@ const Header = () => {
                   href="#"
                   onClick={() => setToActive("departure")}
                 >
-                  <i class="fas fa-plane-departure" />
+                  <i className="fas fa-plane-departure" />
                   <span>Departure</span>
                 </a>
               </li>

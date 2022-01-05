@@ -1,20 +1,20 @@
-import React from 'react'
+import React from "react";
+import Posts from "./Posts";
 
-const HomeLayout = ({home_page_data})=>{
-    console.log("qqqqqq",home_page_data);
-    console.log("here")
+const HomeLayout = ({ home_page_data }) => {
+  return (
+    <>
+      <div className="container">
+        <div className="row mt-4">
+          <div className="col-md-2 flow mt-4 mt-md-0">right column</div>
+          <div className="col-md-8 flow d-flex flex-column align-items-center main-column">
+            <Posts posts_list={home_page_data?.posts}/>
+          </div>
+          <div className="col-md-2 flow mt-4 mt-md-0">left column</div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-    
-    return (
-        <>
-        <i className="fas fa-island-tropical"></i>
-        <div className="rounded-circle"> This is the home page</div>
-        {home_page_data?.posts.map((post)=>{
-            return <p> {post.title}</p>
-        })}
-        </>
-    )
-}
-
-export default HomeLayout
- 
+export default HomeLayout;

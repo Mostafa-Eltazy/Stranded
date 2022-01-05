@@ -1,0 +1,24 @@
+.main-column {
+  border-left: 4px solid $main-theme-hover-color;
+  border-right: 4px solid $main-theme-hover-color;
+  border-radius: 0.25rem;
+}
+
+.post-card {
+
+    border: 1px solid #9D9D9D;
+    width: 100%;
+    background-color: #FEFBF3;
+    border-radius: 0.25rem;
+
+    img {
+        height: 140px;
+        width: 150px;
+        border: 1px solid $main-theme-hover-color;
+        border-radius: 0.25rem;
+        object-fit: contain;
+        margin-right: 1vh;
+        padding: 0.25px 5px 2.5px 5px;
+        background-color: #fff;
+    }
+}

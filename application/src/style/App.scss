@@ -1,10 +1,12 @@
 @import './stranded.scss';
 @import './headerStyle.scss';
 @import './footerStyle.scss';
+@import './homeLayoutStyle.scss';
 
 .page-wrapper {
     background-color: $main-theme-body-color;
     min-height: 75vh;
+    align-self: center;
     // height: 100%;
     margin: 0;
     padding: 2vh 0;
