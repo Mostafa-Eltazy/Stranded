@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\DocBlock\Tags\Author;
 
 /**
  * @ORM\Entity(repositoryClass=PostRepository::class)
@@ -34,7 +35,8 @@ class Post
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
+     * @ORM\JoinColumn(nullable="false")
      */
     private $author;
 
@@ -79,15 +81,21 @@ class Post
         return $this;
     }
 
-    public function getAuthor(): ?string
+    /**
+     * @return User
+     */
+    public function getAuthor(): User
     {
         return $this->author;
     }
 
-    public function setAuthor(string $author): self
+    /**
+     * @param User $author
+     */
+    public function setAuthor(User $author): self
     {
-        $this->author = $author;
-
-        return $this;
+         $this->author = $author;
+         return $this;
     }
+    
 }

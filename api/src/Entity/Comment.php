@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PHPStan\PhpDocParser\Ast\PhpDoc\ReturnTagValueNode;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
@@ -26,6 +27,12 @@ class Comment
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
+     * @ORM\JoinColumn(nullable="false")
+     */
+    private $author;
 
     public function getId(): ?int
     {
@@ -53,6 +60,23 @@ class Comment
     {
         $this->date = $date;
 
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor(): User
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     */
+    public function setAuthor(User $author): self
+    {
+         $this->author = $author;
         return $this;
     }
 }
