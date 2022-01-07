@@ -46,9 +46,22 @@ class PostController extends AbstractController
      */
     public function getPost($id)
     {
-        $repository = $this->getDoctrine()->getRepository(Post::class);
-        $item = $repository->find($id);
-        return $this->json($item);
+        $post = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->find($id);
+
+        return $this->json(
+            ['post' => $post],
+            200,
+            [],
+            [
+                ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER => function (
+                    $obj
+                ) {
+                    return $obj->getId();
+                },
+            ]
+        );
     }
 
     //FOR ADDING A NEW POST
