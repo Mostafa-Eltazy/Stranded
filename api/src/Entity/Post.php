@@ -18,6 +18,7 @@ class Post
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+    
      */
     private $id;
 
@@ -38,13 +39,12 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
-     * @ORM\JoinColumn(nullable="false")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable="false")
      */
     private $author;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="posts")
-     * @ORM\JoinColumn(nullable="false")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="post")
      */
     private $comments;
 
@@ -106,10 +106,10 @@ class Post
     /**
      * @param User $author
      */
-    public function setAuthor(User $author): self
+    public function setAuthor(User $author): void
     {
          $this->author = $author;
-         return $this;
+         
     }
 
     /**
