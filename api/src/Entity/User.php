@@ -6,12 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use PhpParser\ErrorHandler\Collecting;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -45,7 +45,6 @@ class User
      */
     private $lname;
 
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="author")
      */
@@ -54,7 +53,6 @@ class User
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="author")
      */
     private $comments;
-
 
     public function __construct()
     {
@@ -138,5 +136,30 @@ class User
     public function getComments(): Collection
     {
         return $this->comments;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function __call($name, $arguments)
+    {
+        // TODO: Implement @method string getUserIdentifier()
+    }
+
+    public function getUserIdentifier()
+    {
+        return null;
     }
 }

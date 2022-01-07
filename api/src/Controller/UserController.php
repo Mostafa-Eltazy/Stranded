@@ -1,14 +1,13 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\Post;
 use App\Entity\User;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @Route("/users")
@@ -16,6 +15,13 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class UserController extends AbstractController
 {
+    /**
+     * @var UserPasswordHasherInterface
+     */
+    public function __construct(UserPasswordHasherInterface $passwordhasher)
+    {
+        $this->passwordHasher = $passwordhasher;
+    }
     // FOR FETCHING A LIST OF USERS
     /**
      * @Route("/", name="get_users_list", methods={"GET"})
@@ -72,11 +78,14 @@ class UserController extends AbstractController
     {
         $request = json_decode($request->getContent(), true);
         $em = $this->getDoctrine()->getManager();
+
         $newUser = new User();
 
         $newUser->setUsername($request['username']);
         $newUser->setEmail($request['email']);
-        $newUser->setPassword($request['password']);
+        $newUser->setPassword(
+            $this->passwordHasher->hashPassword($newUser, $request['password'])
+        );
         $newUser->setFname($request['fname']);
         $newUser->setLname($request['lname']);
 
