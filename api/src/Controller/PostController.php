@@ -80,7 +80,7 @@ class PostController extends AbstractController
         $newPost->setAuthor($userRef);
         $newPost->setTitle($request['title']);
         $newPost->setContent($request['content']);
-        $newPost->setDate($request['date']);
+        $newPost->setDate(new DateTime($request['date']));
 
         $em->persist($newPost);
         $em->flush();
