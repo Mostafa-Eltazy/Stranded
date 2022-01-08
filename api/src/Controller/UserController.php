@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Service\FileUploader;
 
 /**
  * @Route("/users")
@@ -74,23 +75,35 @@ class UserController extends AbstractController
     /**
      *@Route("/add", name="post_user", methods={"POST"})
      */
-    public function postPost(Request $request)
+    public function postPost(Request $request, FileUploader $uploader)
     {
-        $request = json_decode($request->getContent(), true);
+        // file uploding logic
+        //////////////////////
+        $file = $request->files->get('file');
+        $file_name = $file->getClientOriginalName();
+        $uploader->upload('uploads_directory', $file, $file_name);
+        // accesssing the enttiy manager
+        ////////////////////////////////
         $em = $this->getDoctrine()->getManager();
-
+        // Creating the object with data from request
+        /////////////////////////////////////////////
         $newUser = new User();
-
-        $newUser->setUsername($request['username']);
-        $newUser->setEmail($request['email']);
+        $newUser->setUsername($request->request->all()['username']);
+        $newUser->setEmail($request->request->all()['email']);
+        $newUser->setFname($request->request->all()['fname']);
+        $newUser->setLname($request->request->all()['lname']);
+        $newUser->setProfilePicture('public/uploads_directory/' . $file_name);
+        // hasing the password
+        ///////////////////////
         $newUser->setPassword(
-            $this->passwordHasher->hashPassword($newUser, $request['password'])
+            $this->passwordHasher->hashPassword($newUser, $request->request->all()['password'])
         );
-        $newUser->setFname($request['fname']);
-        $newUser->setLname($request['lname']);
-
+        // persisting th eobject in the databse
+        //////////////////////////////////////
         $em->persist($newUser);
         $em->flush();
+        // return the object as a respons after it's creation and addition to db
+        ////////////////////////////////////////////////////////////////////////
         return $this->json(
             ['new_user' => $newUser],
             200,
