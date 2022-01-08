@@ -72,7 +72,7 @@ class PostController extends AbstractController
      */
     public function postPost(
         Request $request,
-        FileUploader $uploader,
+        FileUploader $uploader
     ) {
         // Uplaod a file into the project
         $uploads_directory = "uploads_directory" ;
