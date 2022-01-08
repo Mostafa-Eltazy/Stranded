@@ -33,7 +33,7 @@ const PostCard = ({ post }) => {
         </div>
         <div className="d-flex flex-column  mt-1 mx-2">
           <h6>{post.title}</h6>
-          <hr className="my-1" />
+          { post.title && <hr className="my-1" />}
           <p className="text-wrap">
             {post.content} Lorem ipsum dolor sit, amet consectetur adipisicing
             elit. Provident officiis iure ab quam earum ducimus nobis cupiditate
