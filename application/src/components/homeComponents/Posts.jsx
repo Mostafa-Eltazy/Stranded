@@ -5,7 +5,7 @@ const Posts = ({ posts_list }) => {
   return (
     <>
       {posts_list?.map((post) => {
-        return <PostCard post={post}/>
+        return <PostCard key={post.id} post={post}/>
       })}
     </>
   );

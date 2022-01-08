@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 const PostCard = ({ post }) => {
   return (
@@ -11,10 +12,26 @@ const PostCard = ({ post }) => {
             }
           />
           <div className="d-flex flex-column mt-1">
-            <span>from: user</span> <span>at : date</span>
+            <span>{post.author.username}</span>
+            {moment(post.date.split("T")[0], "YYYY/MM/DD")
+              .startOf("day")
+              .fromNow()
+              .split(" ")[1] === "days" ? (
+              <span>
+                {moment(post.date.split("T")[0], "YYYY/MM/DD").format(
+                  "MMM Do YYYY"
+                )}
+              </span>
+            ) : (
+              <span>
+                {moment(post.date.split("T")[0], "YYYY/MM/DD")
+                  .startOf("day")
+                  .fromNow()}
+              </span>
+            )}
           </div>
         </div>
-        <div className="d-flex flex-column  mt-1">
+        <div className="d-flex flex-column  mt-1 mx-2">
           <h6>{post.title}</h6>
           <hr className="my-1" />
           <p className="text-wrap">
