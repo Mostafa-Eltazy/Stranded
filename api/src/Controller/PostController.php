@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Entity\User;
 use DateTime;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,9 +21,9 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="get_post_list", methods={"GET"})
      */
-    public function postList(LoggerInterface $l)
+    public function postList()
     {
-        $l->info('home loaded');
+        
         $posts = $this->getDoctrine()
             ->getRepository(Post::class)
             ->findAll();
@@ -74,7 +73,6 @@ class PostController extends AbstractController
     public function postPost(
         Request $request,
         FileUploader $uploader,
-        LoggerInterface $logger
     ) {
         // Uplaod a file into the project
         $uploads_directory = "uploads_directory" ;
