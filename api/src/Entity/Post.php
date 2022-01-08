@@ -48,6 +48,11 @@ class Post
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
 
     public function __construct()
     {
@@ -118,6 +123,18 @@ class Post
     public function getComments(): Collection
     {
         return $this->comments;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
     
 }
