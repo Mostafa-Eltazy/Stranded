@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../components/shared/Header";
-import Footer from "../../components/shared/Footer";
-import HomeApi from "../../components/homeComponents/HomeApi";
-import HomeLayout from "../../components/homeComponents/Homelayout";
+import Header from "../components/shared/Header";
+import Footer from "../components/shared/Footer";
+import HomeApi from "../components/homeComponents/HomeApi";
+import HomeLayout from "../components/homeComponents/Homelayout";
 
 const Home = () => {
   const [data, setData] = useState(null);
