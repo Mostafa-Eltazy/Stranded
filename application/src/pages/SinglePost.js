@@ -2,12 +2,15 @@ import React from 'react'
 
 import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
+import SinglePostLayout from '../components/singlePostComponents/SinglePostLayout';
 
 const  SinglePost = () => {
     return (
         <div>
             <Header/>
-            single post page.
+            <div className="page-wrapper">
+            <SinglePostLayout/>
+            </div>
             <Footer/>
         </div>
     )

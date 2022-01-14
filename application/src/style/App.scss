@@ -2,6 +2,7 @@
 @import './headerStyle.scss';
 @import './footerStyle.scss';
 @import './homeLayoutStyle.scss';
+@import './entryFormStyle.scss';
 
 .page-wrapper {
     background-color: $main-theme-body-color;
@@ -11,3 +12,18 @@
     margin: 0;
     padding: 2vh 0;
 }
+.stranded-button {
+    width: min-content;
+    white-space: nowrap;
+    border-radius: 00.25rem;
+    border: none;
+    padding: 1rem;
+    background-color: $main-theme-sec-color;
+    color: #fff;
+    
+    &:active {
+      transform: scale(0.95);
+      background-color: darken($main-theme-sec-color, 5%);
+      box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
+    }
+  }
