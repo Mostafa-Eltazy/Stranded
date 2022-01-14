@@ -1,23 +1,31 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
-import postSingleEntryData from "./singlePostApi"
+import { useNavigate } from "react-router-dom";
+import postSingleEntryData from "./singlePostApi";
 const REACT_APP_API_BASEURL = `${process.env.REACT_APP_API_BASEURL}/posts`;
 
 const EntryForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const handleFormSubmit =  (e) => {
+  const nav = useNavigate();
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const entryData = {
-      title:title,
-      content:content,
+      title: title,
+      content: content,
       date: new Date().toISOString(),
-      author_id:1,
+      author_id: 1,
+    };
+    try {
+      const { status } = await postSingleEntryData(entryData);
+      if (status === 200) {
+        nav("/dispatch");
+      }
+    } catch (err) {
+      console.log("the post has not been submitted");
     }
-    postSingleEntryData(entryData);
   };
-  console.log(new Date())
+
   return (
     <form className="entry-form">
       <label htmlFor="entry-title">
