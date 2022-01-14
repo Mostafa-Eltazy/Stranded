@@ -1,21 +1,28 @@
 import axios from "axios";
 const REACT_APP_API_BASEURL = `${process.env.REACT_APP_API_BASEURL}/posts`;
 
-export default {
-  postSingleEntryData: async () => {
-    // const response = await axios.get(`${REACT_APP_API_BASEURL}/add`);
-    try {
-        await axios.post(`${REACT_APP_API_BASEURL}/posts/add`,{
 
-          title,
-          content,
-          date: new Date(),
-          author_id: '1'
-        });
-      }
-      catch (err){
-        console.log("failde to post the entry:",err)
-      }
-    return response.data;
-  },
-};
+  const postSingleEntryData = async (entryData) => {
+    console.log("here")
+    const data = new FormData();
+    data.append("title", entryData.title);
+    data.append("content", entryData.content);
+    data.append("date", entryData.date);
+    data.append("author_id", entryData.author_id);
+    axios({
+      method: "post",
+      url: `${REACT_APP_API_BASEURL}/add`,
+      data: data,
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then(function (response) {
+        //handle success
+        console.log(response);
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+      });
+}
+
+export default postSingleEntryData;
