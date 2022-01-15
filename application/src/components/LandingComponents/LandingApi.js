@@ -18,4 +18,16 @@ const registerNewUserData = async (entryData) => {
     });
   };
 
-  export default registerNewUserData
+  const authinticateUser = async(authData) => {
+    return axios({
+      method: "post",
+      url: `${REACT_APP_API_BASEURL}/auth`,
+      data: {
+        "email":authData.email,
+        "password":authData.password
+      },
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  export  {registerNewUserData, authinticateUser}

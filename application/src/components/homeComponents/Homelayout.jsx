@@ -2,6 +2,8 @@ import React from "react";
 import Posts from "./Posts";
 
 const HomeLayout = ({ home_page_data }) => {
+  const user_data = localStorage.getItem("user_data")
+  
   return (
     <>
       <div className="container">

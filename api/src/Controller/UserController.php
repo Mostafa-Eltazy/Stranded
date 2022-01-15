@@ -70,7 +70,7 @@ class UserController extends AbstractController
             ]
         );
     }
-
+    
     //FOR ADDING A NEW USER
     /**
      *@Route("/add", name="post_user", methods={"POST"})
@@ -78,14 +78,15 @@ class UserController extends AbstractController
     public function createUser(Request $request, FileUploader $uploader)
     {
         $newUser = new User();
-        if ($request->files->get('file')){
-
+        if ($request->files->get('file')) {
             // file uploding logic
             //////////////////////
             $file = $request->files->get('file');
             $file_name = $file->getClientOriginalName();
             $uploader->upload('uploads_directory', $file, $file_name);
-            $newUser->setProfilePicture('public/uploads_directory/' . $file_name);
+            $newUser->setProfilePicture(
+                'public/uploads_directory/' . $file_name
+            );
         }
         // accesssing the enttiy manager
         ////////////////////////////////
@@ -99,7 +100,10 @@ class UserController extends AbstractController
         // hasing the password
         ///////////////////////
         $newUser->setPassword(
-            $this->passwordHasher->hashPassword($newUser, $request->request->all()['password'])
+            $this->passwordHasher->hashPassword(
+                $newUser,
+                $request->request->all()['password']
+            )
         );
         // persisting th eobject in the databse
         //////////////////////////////////////
@@ -125,11 +129,11 @@ class UserController extends AbstractController
     /**
      *@Route("/edit/{id}", name="edit_user", methods={"PUT"})
      */
-    public function updatePost(Request $request, $id)
+    public function updateUser(Request $request, $id)
     {
         $request = json_decode($request->getContent(), true);
         $entityManager = $this->getDoctrine()->getManager();
-
+        
         $currentUser = $this->getDoctrine()
             ->getRepository(User::class)
             ->find($id);
@@ -140,7 +144,7 @@ class UserController extends AbstractController
         $currentUser->setLname($request['lname']);
 
         $entityManager->flush();
-
+        
         return $this->json(
             ['updated_user' => $currentUser],
             200,
@@ -164,7 +168,7 @@ class UserController extends AbstractController
         $user_to_delte = $this->getDoctrine()
             ->getRepository(User::class)
             ->find($id);
-
+            
         $em = $this->getDoctrine()->getManager();
         $em->remove($user_to_delte);
         $em->flush();
@@ -173,5 +177,35 @@ class UserController extends AbstractController
             null,
             \Symfony\Component\HttpFoundation\Response::HTTP_NO_CONTENT
         );
+    }
+    //FOR FETCHING A USER WITH EMAIL AND PASSWORD
+    /**
+     * @Route("/auth", name="get_user", methods={"GET","POST"})
+     */
+    public function authinticateUser(Request $request)
+    {
+        $request = json_decode($request->getContent(), true);
+        $user = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findOneBy(['email' => $request['email']]);
+    
+        if (
+            $this->passwordHasher->isPasswordValid($user, $request['password'])
+        ) {
+            return $this->json(
+                ['user' => $user],
+                200,
+                [],
+                [
+                    ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER => function (
+                        $obj
+                    ) {
+                        return $obj->getId();
+                    },
+                ]
+            );
+        } else {
+            return $this->json(['wrong password inforamtion']);
+        }
     }
 }
