@@ -75,24 +75,27 @@ class UserController extends AbstractController
     /**
      *@Route("/add", name="post_user", methods={"POST"})
      */
-    public function postPost(Request $request, FileUploader $uploader)
+    public function createUser(Request $request, FileUploader $uploader)
     {
-        // file uploding logic
-        //////////////////////
-        $file = $request->files->get('file');
-        $file_name = $file->getClientOriginalName();
-        $uploader->upload('uploads_directory', $file, $file_name);
+        $newUser = new User();
+        if ($request->files->get('file')){
+
+            // file uploding logic
+            //////////////////////
+            $file = $request->files->get('file');
+            $file_name = $file->getClientOriginalName();
+            $uploader->upload('uploads_directory', $file, $file_name);
+            $newUser->setProfilePicture('public/uploads_directory/' . $file_name);
+        }
         // accesssing the enttiy manager
         ////////////////////////////////
         $em = $this->getDoctrine()->getManager();
         // Creating the object with data from request
         /////////////////////////////////////////////
-        $newUser = new User();
         $newUser->setUsername($request->request->all()['username']);
         $newUser->setEmail($request->request->all()['email']);
         $newUser->setFname($request->request->all()['fname']);
         $newUser->setLname($request->request->all()['lname']);
-        $newUser->setProfilePicture('public/uploads_directory/' . $file_name);
         // hasing the password
         ///////////////////////
         $newUser->setPassword(
