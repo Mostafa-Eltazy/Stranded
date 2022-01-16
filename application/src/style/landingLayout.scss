@@ -1,4 +1,4 @@
-.registration-form {
+.landing-form {
     
     display: flex;
     flex-direction: column;
@@ -10,6 +10,8 @@
     border-radius: 0.5rem;
     border: 1px solid #C7B198;
     box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
+    min-height: 35rem;
+    
 
     label {
         width: 100%;

@@ -13,14 +13,18 @@ const Header = () => {
   return (
     <header className="header px-3 py-3">
       <div className="container d-flex justify-content-between mt-4">
-          <Link to="/dispatch" onClick={() => setToActive("dispatch")} style={{textDecoration: 'none', color:'#000'}}>
-        <div className="d-flex align-items-center">
+        <Link
+          to="/dispatch"
+          onClick={() => setToActive("dispatch")}
+          style={{ textDecoration: "none", color: "#000" }}
+        >
+          <div className="d-flex align-items-center">
             BE
             <h1>
               <strong>Stranded</strong>
             </h1>
-        </div>
-          </Link>
+          </div>
+        </Link>
         <div>
           <nav className="d-flex align-items-center">
             <label htmlFor="collpase-btn-check" className="collpase-btn">
