@@ -8,7 +8,7 @@ const Forms = () => {
   console.log(change);
   return (
     <div className="col-md-5 container landing-form m-0">
-      <div className="toggler-container d-flex justify-content-around w-100">
+      <div className="toggler-container d-flex justify-content-around w-100 mb-4">
         <button
           className={`${change ? "toggler-btn-active" : "toggler-btn"}`}
           value={change}
