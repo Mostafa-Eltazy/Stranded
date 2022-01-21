@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { registerNewUserData } from "./LandingApi";
 
 const RegistrationForm = () => {
+  
   const [userData, setUserData] = useState({});
   const nav = useNavigate();
   const handlFormSubmit = async () => {

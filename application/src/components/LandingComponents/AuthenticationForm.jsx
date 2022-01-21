@@ -1,24 +1,32 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { authinticateUser } from "./LandingApi";
+import { useUserContext } from "../UserData/Context";
+import { actions } from "../UserData/Reducer";
 
 const AuthenticationForm = () => {
   const [authData, setAuthData] = useState({});
+  const { USER_Context_State, dispatch } = useUserContext();
+
+  useEffect(() => {
+    console.log("User context state", USER_Context_State);
+  }, [USER_Context_State]);
   const nav = useNavigate();
   const handleFormSubmit = async () => {
-    console.log(authData);
     try {
+      dispatch({ type: actions.LOGIN_START });
       const { status, data } = await authinticateUser(authData);
       if (status === 200) {
-        localStorage.setItem("user_data", JSON.stringify(data));
+        // localStorage.setItem("user_data", JSON.stringify(data));
+        dispatch({ type: actions.LOGIN_PASS, data });
         nav("/dispatch");
       }
     } catch (err) {
+      dispatch({ type: actions.LOGIN_FAIL });
       console.log("Authintication Failed due to:", err);
     }
   };
-
   return (
     <div className="landing-form  d-flex flex-column align-items-center justify-content-between w-100">
       <div className="d-flex flex-column align-items-center justify-content-between w-100 h-50">

@@ -1,15 +1,19 @@
 import React from "react";
-import AuthenticationForm from "./AuthenticationForm";
 import Forms from "./Forms";
 import LandingIntro from "./LandingIntro";
-import RegistrationForm from "./RegistrationForm";
+import { UserContextProvider } from "../UserData/Context";
+
+
 
 const LandingLayout = () => {
+  
   return (
     <div className="container">
       <div className="col-md-12 flow d-md-flex justify-content-between">
         <LandingIntro />
-        <Forms />
+        <UserContextProvider>
+          <Forms />
+        </UserContextProvider>
       </div>
     </div>
   );
