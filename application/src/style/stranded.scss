@@ -59,7 +59,7 @@ $screen_size__xxs: 425px; // phone
 
     }
     &:active {
-      transform: scale(0.95);
+      transform: scale(0.9);
       background-color: darken($main-theme-sec-color, 5%);
       box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
     }
