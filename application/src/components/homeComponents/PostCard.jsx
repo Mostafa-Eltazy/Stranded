@@ -14,22 +14,23 @@ const PostCard = ({ post }) => {
           />
           <div className="d-flex flex-column mt-1">
             <span>{post.author.username}</span>
-            {moment(post.date.split("T")[0], "YYYY/MM/DD")
+            {moment((post.isEdited ? post.editDate:post.date).split("T")[0], "YYYY/MM/DD")
               .startOf("day")
               .fromNow()
               .split(" ")[1] === "days" ? (
               <span>
-                {moment(post.date.split("T")[0], "YYYY/MM/DD").format(
+                {moment((post.isEdited ? post.editDate:post.date).split("T")[0], "YYYY/MM/DD").format(
                   "MMM Do YYYY"
                 )}
               </span>
             ) : (
               <span>
-                {moment(post.date.split("T")[0], "YYYY/MM/DD")
+                {moment((post.isEdited ? post.editDate:post.date).split("T")[0], "YYYY/MM/DD")
                   .startOf("day")
                   .fromNow()}
               </span>
             )}
+            {post.isEdited && <span>Edited</span>}
           </div>
         </div>
         <div className="d-flex flex-column  mt-1 mx-2">

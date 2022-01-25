@@ -90,6 +90,8 @@ class PostController extends AbstractController
         $newPost->setTitle($request->request->all()['title']);
         $newPost->setContent($request->request->all()['content']);
         $newPost->setDate(new DateTime($request->request->all()['date']));
+        $newPost->setIsEdited(false);
+
 
         $em->persist($newPost);
         $em->flush();
@@ -109,18 +111,28 @@ class PostController extends AbstractController
 
     //FOR UPDATING A NEW POST
     /**
-     *@Route("/edit/{id}", name="edit_post", methods={"PUT"})
+     *@Route("/edit", name="edit_post", methods={"POST"})
      */
-    public function updatePost(Request $request, $id)
+    public function updatePost(Request $request, FileUploader $uploader)
     {
-        $request = json_decode($request->getContent(), true);
-        $entityManager = $this->getDoctrine()->getManager();
-
+        // $newPost = new Post();
         $currentPost = $this->getDoctrine()
-            ->getRepository(Post::class)
-            ->find($id);
-        $currentPost->setTitle($request['title']);
-        $currentPost->setContent($request['content']);
+        ->getRepository(Post::class)
+        ->find($request->request->all()['post_id']);
+        // Uplaod a file into the project
+        if ($request->files->get('file')) {
+            $uploads_directory = 'uploads_directory';
+            $file = $request->files->get('file');
+            $file_name = $file->getClientOriginalName();
+            $uploader->upload($uploads_directory, $file, $file_name);
+            $currentPost->setImage('public/uploads_directory/' . $file_name);
+        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $currentPost->setTitle($request->request->all()['title']);
+        $currentPost->setContent($request->request->all()['content']);
+        $currentPost->setEditDate(new DateTime($request->request->all()['date']));
+        $currentPost->setIsEdited(true);
+
 
         $entityManager->flush();
 

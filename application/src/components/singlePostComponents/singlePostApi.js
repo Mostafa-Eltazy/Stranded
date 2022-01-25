@@ -23,4 +23,18 @@ const getSingleEntryData = async (id) => {
   });
 };
 
-export { postSingleEntryData, getSingleEntryData };
+const editSinglePostData = async(entryData)=>{
+  const data = new FormData();
+  data.append("post_id", entryData.post_id);
+  data.append("title", entryData.title);
+  data.append("content", entryData.content);
+  data.append("date", entryData.editDate);
+  return axios({
+    method: "post",
+    url: `${REACT_APP_API_BASEURL}/edit`,
+    data: data,
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+}
+
+export { postSingleEntryData, getSingleEntryData, editSinglePostData };

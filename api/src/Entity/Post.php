@@ -53,6 +53,16 @@ class Post
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_edited;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $edit_date;
+
 
     public function __construct()
     {
@@ -133,6 +143,30 @@ class Post
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getIsEdited(): ?bool
+    {
+        return $this->is_edited;
+    }
+
+    public function setIsEdited(?bool $is_edited): self
+    {
+        $this->is_edited = $is_edited;
+
+        return $this;
+    }
+
+    public function getEditDate(): ?\DateTimeInterface
+    {
+        return $this->edit_date;
+    }
+
+    public function setEditDate(?\DateTimeInterface $edit_date): self
+    {
+        $this->edit_date = $edit_date;
 
         return $this;
     }

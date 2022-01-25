@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { editSinglePostData } from "./singlePostApi";
 import { RiEditLine } from "react-icons/ri";
 import { MdOutlineDeleteSweep } from "react-icons/md";
 
 const ReadEntryForm = ({ post_data }) => {
+  const nav = useNavigate();
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(post_data?.title || "");
   const [content, setContent] = useState(post_data?.content || "");
@@ -16,8 +19,25 @@ const ReadEntryForm = ({ post_data }) => {
     }
     setEditMode((editMode) => !editMode);
   };
-  const handleFormUpdate = (e) => {};
-  console.log(title);
+  const handleEditSubmit = async(e) => {
+    e.preventDefault();
+    const entryData = {
+      
+      post_id: post_data?.id,
+      title,
+      content,
+      editDate: new Date().toISOString(),
+    }
+    try {
+      const {status} = await editSinglePostData(entryData);
+      if (status === 200 ){
+        nav("/dispatch")
+      }
+    } catch(err){
+      console.log("Post update Failed due to :", err)
+    }
+  };
+  console.log(post_data?.id);
   console.log(content);
   return (
     <>
@@ -73,7 +93,8 @@ const ReadEntryForm = ({ post_data }) => {
         {editMode ? (
           <button
             className="stranded-button w-25 align-self-center"
-            onClick={handleFormUpdate}
+            onClick={handleEditSubmit}
+            disabled={ post_data.title === title && post_data.content === content}
           >
             Submit updates
           </button>
