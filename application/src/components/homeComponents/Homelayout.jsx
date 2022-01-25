@@ -1,7 +1,14 @@
 import React from "react";
 import Posts from "./Posts";
+import { useEffect } from "react";
+import { useUserContext } from "../UserData/Context";
 
 const HomeLayout = ({ home_page_data }) => {
+  const { USER_Context_State, dispatch } = useUserContext();
+  useEffect(()=>{
+    console.log("from the posts page", USER_Context_State)
+  },[USER_Context_State])
+
   return (
     <>
       <div className="container">

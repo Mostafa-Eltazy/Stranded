@@ -11,9 +11,9 @@ const LandingLayout = () => {
     <div className="container">
       <div className="col-md-12 flow d-md-flex justify-content-between">
         <LandingIntro />
-        <UserContextProvider>
+        {/* <UserContextProvider> */}
           <Forms />
-        </UserContextProvider>
+        {/* </UserContextProvider> */}
       </div>
     </div>
   );

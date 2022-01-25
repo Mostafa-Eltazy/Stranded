@@ -1,7 +1,6 @@
-import React from "react";
-import { useReducer, useState } from "react";
-import RegistrationForm from "./RegistrationForm";
+import React, { useState } from "react";
 import AuthenticationForm from "./AuthenticationForm";
+import RegistrationForm from "./RegistrationForm";
 
 const Forms = () => {
   const [change, setChange] = useState(true);

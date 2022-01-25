@@ -1,9 +1,19 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { postSingleEntryData } from "./singlePostApi";
+import { useUserContext } from "../UserData/Context";
 
 const WriteEntryForm = () => {
+  const { USER_Context_State, dispatch } = useUserContext();
+
+  useEffect(()=>{
+    console.log("from entry page", USER_Context_State)
+  },[USER_Context_State])
+
+
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const nav = useNavigate();
