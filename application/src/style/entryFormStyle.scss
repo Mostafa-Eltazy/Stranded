@@ -1,5 +1,5 @@
 .entry-form {
-  border: 1px solid #C7B198;
+  border: 1px solid #c7b198;
   border-radius: 0.25rem;
   width: 100%;
   padding: 3rem;
@@ -8,30 +8,42 @@
     font-size: 20px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 3rem;
-    input {
-      margin-top: 1rem;
-      font-size: 15px;
-      padding-left: 10px;
-      height: 3rem;
-      background-color: #FDFAF6;
-      border-radius: 0.25rem;
-      border: 0.25px solid #EEC373;
-      box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
-      
-    }
-    textarea {
-        height: 10rem;
-        margin-top: 1rem;
-        font-size: 15px;
-        padding-left: 10px;
-        padding-top: 5px;
-        background-color: #FDFAF6;
-        border-radius: 0.25rem;
-        border: 0.25px solid #EEC373;
-        box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
-    }
-    
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
   }
-  
+  input {
+    font-size: 15px;
+    padding-left: 10px;
+    height: 3rem;
+    border-radius: 0.25rem;
+    border: 0.25px solid #eec373;
+    box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
+  }
+  textarea {
+    margin-bottom: 2rem;
+    height: 10rem;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-top: 5px;
+    border-radius: 0.25rem;
+    border: 0.25px solid #eec373;
+    box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
+  }
+  h3 {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+  }
+  p {
+    margin-bottom: 2rem;
+    height: 10rem;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-top: 5px;
+    border-radius: 0.25rem;
+    // border: 0.25px solid #eec373;
+    // box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
+  }
 }

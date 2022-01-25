@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const PostCard = ({ post }) => {
   return (
@@ -32,8 +33,15 @@ const PostCard = ({ post }) => {
           </div>
         </div>
         <div className="d-flex flex-column  mt-1 mx-2">
-          <h6>{post.title}</h6>
-          { post.title && <hr className="my-1" />}
+          <h6>
+            <Link
+              to={`/entry/${post.id}`}
+              style={{ textDecoration: "none", color: "#000" }}
+            >
+              {post.title}
+            </Link>
+          </h6>
+          {post.title && <hr className="my-1" />}
           <p className="text-wrap">
             {post.content} Lorem ipsum dolor sit, amet consectetur adipisicing
             elit. Provident officiis iure ab quam earum ducimus nobis cupiditate

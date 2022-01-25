@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import Accountpage from "./pages/Accountpage";
-import SinglePost from "./pages/SinglePost";
+import SinglePostPage from "./pages/SinglePostPage";
 import SettingsPage from "./pages/SettingsPage";
 
 function App() {
@@ -14,7 +14,8 @@ function App() {
           <Route path="/" element={<LandingPage />} exact />
           <Route path="/dispatch" element={<HomePage />} />
           <Route path="/island" element={<Accountpage />} />
-          <Route path="/entry" element={<SinglePost />} />
+          <Route path="/entry" element={<SinglePostPage />} />
+          <Route path="/entry/:id" element={<SinglePostPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </div>

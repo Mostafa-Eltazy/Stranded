@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import postSingleEntryData from "./singlePostApi";
-const REACT_APP_API_BASEURL = `${process.env.REACT_APP_API_BASEURL}/posts`;
+import { postSingleEntryData } from "./singlePostApi";
 
-const EntryForm = () => {
+const WriteEntryForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const nav = useNavigate();
@@ -27,29 +26,24 @@ const EntryForm = () => {
   };
 
   return (
-    <form className="entry-form">
-      <label htmlFor="entry-title">
-        {" "}
-        Title
-        <input
-          type="text"
-          id="entry-title"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </label>
-      <label htmlFor="entry-content">
-        Content
-        <textarea
-          id="entry-content"
-          onChange={(e) => setContent(e.target.value)}
-        />
-      </label>
+    <form className="entry-form d-flex flex-column">
+      <label htmlFor="entry-title"> Title</label>
+      <input
+        type="text"
+        id="entry-title"
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <label htmlFor="entry-content">Content</label>
+      <textarea
+        id="entry-content"
+        onChange={(e) => setContent(e.target.value)}
+      />
 
-      <button className="stranded-button" onClick={handleFormSubmit}>
+      <button className="stranded-button w-25" onClick={handleFormSubmit}>
         Dispatch !
       </button>
     </form>
   );
 };
 
-export default EntryForm;
+export default WriteEntryForm;
