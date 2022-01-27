@@ -1,7 +1,7 @@
 // Header and Footer colors
-$main-theme-main-color: #B6D0E2;
+$main-theme-main-color: #b6d0e2;
 $main-theme-sec-color: #36454f;
-$main-theme-body-color: #F8F0DF;
+$main-theme-body-color: #f8f0df;
 $main-theme-hover-color: #899499;
 /* Responsive breakpoints */
 $screen_size__lg: 1241px; // Wide
@@ -10,104 +10,113 @@ $screen_size__sm: 992px; // ?
 $screen_size__xs: 767px; // tablet
 $screen_size__xxs: 425px; // phone
 
-
 .page-wrapper {
-    // background-color: $main-theme-body-color;
-    background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
-  
-    min-height: 75vh;
-    align-self: center;
-    margin: 0;
-    padding: 2vh 0;
+  // background-color: $main-theme-body-color;
+  background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+
+  min-height: 75vh;
+  align-self: center;
+  margin: 0;
+  padding: 2vh 0;
+}
+.stranded-button {
+  min-width: 15rem;
+  white-space: nowrap;
+  border-radius: 00.25rem;
+  border: none;
+  padding: 1rem;
+  background-color: $main-theme-sec-color;
+  color: #fff;
+
+  &:active {
+    transform: scale(0.95);
+    background-color: darken($main-theme-sec-color, 5%);
+    box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
   }
-  .stranded-button {
-    min-width: 15rem;
-    white-space: nowrap;
-    border-radius: 00.25rem;
-    border: none;
-    padding: 1rem;
-    background-color: $main-theme-sec-color;
-    color: #fff;
-  
-    &:active {
-      transform: scale(0.95);
-      background-color: darken($main-theme-sec-color, 5%);
-      box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
-    }
+}
 
-    
+.stranded-button-icon {
+  min-width: 2.7rem;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.5rem 0 0.5rem 0;
+  margin: 0 0.5rem 0 0.5rem;
+  // background: linear-gradient(rgba(121, 173, 23, 0.678), rgba(47, 203, 231, 0.6));
+  background-color: $main-theme-main-color;
+  color: #000;
+  &-green {
+    @extend .stranded-button-icon;
+    background: linear-gradient(
+      rgba(47, 203, 231, 0.6),
+      rgba(121, 173, 23, 0.678)
+    );
   }
-
-  .stranded-button-icon {
-    min-width: 2.7rem;
-    white-space: nowrap;
-    border-radius: 0.5rem;
-    border: none;
-    padding: 0.5rem 0 0.5rem 0;
-    margin: 0 0.5rem 0 0.5rem;
-    // background: linear-gradient(rgba(121, 173, 23, 0.678), rgba(47, 203, 231, 0.6));
-    background-color: $main-theme-main-color;
-    color: #000;
-    &-green {
-      @extend .stranded-button-icon;
-      background: linear-gradient(rgba(47, 203, 231, 0.6), rgba(121, 173, 23, 0.678) );
-
-    }
-    &-red {
-      @extend .stranded-button-icon;
-      background: linear-gradient(rgba(255, 187, 0, 0.6),rgba(155, 29, 29, 0.678));
-
-    }
-    &:active {
-      transform: scale(0.9);
-      background-color: darken($main-theme-sec-color, 5%);
-      box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
-    }
-
-    
+  &-red {
+    @extend .stranded-button-icon;
+    background: linear-gradient(
+      rgba(255, 187, 0, 0.6),
+      rgba(155, 29, 29, 0.678)
+    );
   }
-  
-  .toggler-btn {
-    white-space: nowrap;
-    border-bottom: none;
-    border: transparent;
-    border-radius: 25px;
-    padding: 1rem;
-    min-width: 12rem;
-    background-color: transparent;
-    color: #000;
-    &:active {
-      transform: scale(0.95);
-      background: linear-gradient(
-        rgba(238, 174, 105, 0.6),
-        rgba(116, 56, 139, 0.6)
-      );
-      box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
-    }
-    
+  &:active {
+    transform: scale(0.9);
+    background-color: darken($main-theme-sec-color, 5%);
+    box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
   }
-  .toggler-btn-active {
-    white-space: nowrap;
-    border: transparent;
-    border-radius: 25px;
-    border-bottom: none;
-    border: none;
-    padding: 1rem;
-    min-width: 12rem;
-    background-color: transparent;
-    color: #000;
+}
+
+.toggler-btn {
+  white-space: nowrap;
+  border-bottom: none;
+  border: transparent;
+  border-radius: 25px;
+  padding: 1rem;
+  min-width: 12rem;
+  background-color: transparent;
+  color: #000;
+  &:active {
+    transform: scale(0.95);
     background: linear-gradient(
       rgba(238, 174, 105, 0.6),
       rgba(116, 56, 139, 0.6)
     );
-  
     box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
   }
-  .toggler-container {
-    background-color: transparent;
-    border-bottom: none;
-    border-radius: 0.25rem;
-    
-  
+}
+.toggler-btn-active {
+  white-space: nowrap;
+  border: transparent;
+  border-radius: 25px;
+  border-bottom: none;
+  border: none;
+  padding: 1rem;
+  min-width: 12rem;
+  background-color: transparent;
+  color: #000;
+  background: linear-gradient(
+    rgba(238, 174, 105, 0.6),
+    rgba(116, 56, 139, 0.6)
+  );
+
+  box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
+}
+.toggler-container {
+  background-color: transparent;
+  border-bottom: none;
+  border-radius: 0.25rem;
+}
+.stranded-modal {
+  &__header {
+    background: linear-gradient(rgba(0, 108, 196, 0.6), rgba(89, 91, 182, 0.6));
   }
-  
+  &__body {
+    background: linear-gradient(
+      rgba(238, 174, 105, 0.6),
+      rgba(116, 56, 139, 0.6)
+    );
+  }
+  &__footer {
+    background-color:#fff
+  }
+}

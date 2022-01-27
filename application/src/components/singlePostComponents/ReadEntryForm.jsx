@@ -1,15 +1,21 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { editSinglePostData } from "./singlePostApi";
+import { deleteSingleEntryData, editSinglePostData } from "./singlePostApi";
 import { RiEditLine } from "react-icons/ri";
 import { MdOutlineDeleteSweep } from "react-icons/md";
 
 const ReadEntryForm = ({ post_data }) => {
+  // Page Navigator
   const nav = useNavigate();
+  // edit state variables
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(post_data?.title || "");
   const [content, setContent] = useState(post_data?.content || "");
+  // modal state variables
+  const [show, setShow] = useState(false);
 
   const handleEdit = (e) => {
     e.preventDefault();
@@ -19,28 +25,58 @@ const ReadEntryForm = ({ post_data }) => {
     }
     setEditMode((editMode) => !editMode);
   };
-  const handleEditSubmit = async(e) => {
+  const handleClose = () => setShow(false);
+  const handleShow = (e) => {
+    e.preventDefault();
+    setShow(true);
+  };
+  const handleEditSubmit = async (e) => {
     e.preventDefault();
     const entryData = {
-      
       post_id: post_data?.id,
       title,
       content,
       editDate: new Date().toISOString(),
-    }
+    };
     try {
-      const {status} = await editSinglePostData(entryData);
-      if (status === 200 ){
-        nav("/dispatch")
+      const { status } = await editSinglePostData(entryData);
+      if (status === 200) {
+        nav("/dispatch");
       }
-    } catch(err){
-      console.log("Post update Failed due to :", err)
+    } catch (err) {
+      console.log("Post update Failed due to :", err);
     }
   };
-  console.log(post_data?.id);
-  console.log(content);
+
+  const handleDelete = async () => {
+    try {
+      const { status } = await deleteSingleEntryData(post_data.id);
+      if (status === 204) {
+        nav("/dispatch");
+      }
+    } catch (err) {
+      console.log("something went wrong while deleting the post");
+    }
+  };
   return (
     <>
+      <Modal className="stranded-modal" show={show} onHide={handleClose}>
+        <Modal.Header closeButton className="stranded-modal__header">
+          <Modal.Title>Delete confirmation message</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="stranded-modal__body">
+          Are you Certain you want to delete the Entry,{" "}
+          {post_data?.author?.username} ?!
+        </Modal.Body>
+        <Modal.Footer className="stranded-modal__footer">
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete Entry
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <form className="entry-form d-flex flex-column">
         <div className="align-self-center align-self-md-end mb-4">
           <button
@@ -54,7 +90,7 @@ const ReadEntryForm = ({ post_data }) => {
           <button
             className="stranded-button-icon-red"
             onClick={(e) => {
-              handleEdit(e);
+              handleShow(e);
             }}
           >
             <MdOutlineDeleteSweep />
@@ -94,7 +130,9 @@ const ReadEntryForm = ({ post_data }) => {
           <button
             className="stranded-button w-25 align-self-center"
             onClick={handleEditSubmit}
-            disabled={ post_data.title === title && post_data.content === content}
+            disabled={
+              post_data.title === title && post_data.content === content
+            }
           >
             Submit updates
           </button>

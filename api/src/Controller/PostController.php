@@ -152,13 +152,13 @@ class PostController extends AbstractController
 
     // FOR DELETING  A POST
     /**
-     * @Route ("/delete/{id}", name="delete_post", methods={"DELETE"})
+     * @Route ("/delete", name="delete_post", methods={"POST"})
      **/
-    public function delete($id)
+    public function delete(Request $request)
     {
         $post_to_delte = $this->getDoctrine()
             ->getRepository(Post::class)
-            ->find($id);
+            ->find($request->request->all()['post_id']);
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($post_to_delte);

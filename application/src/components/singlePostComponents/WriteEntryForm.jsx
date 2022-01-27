@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { postSingleEntryData } from "./singlePostApi";
 import { useUserContext } from "../UserData/Context";
 
+
 const WriteEntryForm = () => {
   const { USER_Context_State, dispatch } = useUserContext();
 
@@ -23,7 +24,7 @@ const WriteEntryForm = () => {
       title: title,
       content: content,
       date: new Date().toISOString(),
-      author_id: 1,
+      author_id: 9,
     };
     try {
       const { status } = await postSingleEntryData(entryData);

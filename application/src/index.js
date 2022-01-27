@@ -1,10 +1,10 @@
+import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import ReactDOM from "react-dom";
+import { UserContextProvider } from "../src/components/UserData/Context";
 import "../src/style/index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import "bootstrap/dist/css/bootstrap.css";
-import { UserContextProvider } from "../src/components/UserData/Context";
 
 ReactDOM.render(
   <React.StrictMode>

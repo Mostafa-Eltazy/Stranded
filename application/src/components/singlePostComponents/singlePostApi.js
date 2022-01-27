@@ -23,7 +23,7 @@ const getSingleEntryData = async (id) => {
   });
 };
 
-const editSinglePostData = async(entryData)=>{
+const editSinglePostData = async (entryData) => {
   const data = new FormData();
   data.append("post_id", entryData.post_id);
   data.append("title", entryData.title);
@@ -35,6 +35,21 @@ const editSinglePostData = async(entryData)=>{
     data: data,
     headers: { "Content-Type": "multipart/form-data" },
   });
-}
+};
+const deleteSingleEntryData = async (id) => {
+  const data = new FormData();
+  data.append("post_id", id);
+  return axios({
+    method: "post",
+    url: `${REACT_APP_API_BASEURL}/delete`,
+    data: data,
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+};
 
-export { postSingleEntryData, getSingleEntryData, editSinglePostData };
+export {
+  postSingleEntryData,
+  getSingleEntryData,
+  editSinglePostData,
+  deleteSingleEntryData,
+};
