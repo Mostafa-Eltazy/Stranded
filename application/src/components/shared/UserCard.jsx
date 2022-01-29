@@ -1,12 +1,14 @@
 import React from "react";
 import CreateEntryButton from "./CreateEntryButton";
 import { Link } from "react-router-dom";
-
+import { useUserContext } from "../UserData/Context";
 const UserCard = () => {
+  const { USER_Context_State, dispatch } = useUserContext();
+
   return (
     <div>
       <div className="user-card d-flex flex-column align-items-center">
-        <h4> Welcome Back, Tazy</h4>
+        <h4> Welcome Back, {USER_Context_State?.user?.user.username}</h4>
         <Link
           to={`/island`}
           className="mb-3"

@@ -17,12 +17,14 @@ const HomeLayout = ({ home_page_data }) => {
           <div className="col-md-9 flow d-flex flex-column align-items-center main-column">
             <Posts posts_list={home_page_data?.posts} />
           </div>
-          <div
-            className="col-md-3 flow mt-4 mt-md-0"
-            // style={{ backgroundColor: "silver" }}
-          >
-            <UserCard />
-          </div>
+          {USER_Context_State?.user?.user ? (
+            <div
+              className="col-md-3 flow mt-4 mt-md-0"
+              // style={{ backgroundColor: "silver" }}
+            >
+              <UserCard />
+            </div>
+          ) : null}
         </div>
       </div>
     </>

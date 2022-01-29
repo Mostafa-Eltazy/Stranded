@@ -1,17 +1,28 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { deleteSingleEntryData, editSinglePostData } from "./singlePostApi";
 import { RiEditLine } from "react-icons/ri";
 import { MdOutlineDeleteSweep } from "react-icons/md";
+import { useUserContext } from "../UserData/Context";
+
 
 const ReadEntryForm = ({ post_data }) => {
+  const { USER_Context_State, dispatch } = useUserContext();
+
+  useEffect(() => {
+    console.log("from Read&edit form page", USER_Context_State);
+  }, [USER_Context_State]);
+
   // Page Navigator
   const nav = useNavigate();
+  const search = window.location.search;
+  const [,x] = search.split('=')
+  console.log((x === 'true'))
   // edit state variables
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false || (x === 'true'));
   const [title, setTitle] = useState(post_data?.title || "");
   const [content, setContent] = useState(post_data?.content || "");
   // modal state variables
@@ -78,24 +89,26 @@ const ReadEntryForm = ({ post_data }) => {
         </Modal.Footer>
       </Modal>
       <form className="entry-form d-flex flex-column">
-        <div className="align-self-center align-self-md-end mb-4">
-          <button
-            className="stranded-button-icon-green"
-            onClick={(e) => {
-              handleEdit(e);
-            }}
-          >
-            <RiEditLine />
-          </button>
-          <button
-            className="stranded-button-icon-red"
-            onClick={(e) => {
-              handleShow(e);
-            }}
-          >
-            <MdOutlineDeleteSweep />
-          </button>
-        </div>
+        {USER_Context_State?.user?.user.id === post_data?.author?.id ? (
+          <div className="align-self-center align-self-md-end mb-4">
+            <button
+              className="stranded-button-icon-green"
+              onClick={(e) => {
+                handleEdit(e);
+              }}
+            >
+              <RiEditLine />
+            </button>
+            <button
+              className="stranded-button-icon-red"
+              onClick={(e) => {
+                handleShow(e);
+              }}
+            >
+              <MdOutlineDeleteSweep />
+            </button>
+          </div>
+        ) : null}
         {editMode && <label htmlFor="entry-title"> Title</label>}
 
         {editMode ? (

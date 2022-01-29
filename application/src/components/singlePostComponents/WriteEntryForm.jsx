@@ -24,7 +24,7 @@ const WriteEntryForm = () => {
       title: title,
       content: content,
       date: new Date().toISOString(),
-      author_id: 9,
+      author_id: USER_Context_State?.user?.user.id,
     };
     try {
       const { status } = await postSingleEntryData(entryData);
