@@ -18,6 +18,10 @@
     border-radius: 0.25rem;
     border: 0.25px solid #eec373;
     box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
+    outline: none;
+    &:focus{
+      outline: none;
+    }
   }
   textarea {
     margin-bottom: 2rem;
@@ -28,6 +32,10 @@
     border-radius: 0.25rem;
     border: 0.25px solid #eec373;
     box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
+    outline: none;
+    &:focus{
+      outline: none;
+    }
   }
   h3 {
     font-size: 20px;

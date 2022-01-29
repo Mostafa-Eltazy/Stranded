@@ -2,6 +2,7 @@ const actions = {
   LOGIN_START: "fetch_user_data",
   LOGIN_PASS: "user_passed",
   LOGIN_FAIL: "user_failed",
+  LOGOUT:"user_removed"
 };
 
 // const status = {
@@ -30,6 +31,14 @@ const USER_REDUCER = (state, action) => {
         isFetching: false,
         error: true,
       };
+    }
+    case "user_removed" : {
+      return {
+        ...state,
+        user:null,
+        isFetching: false,
+        error: false,
+      }
     }
 
     default:

@@ -31,9 +31,9 @@ const AuthenticationForm = () => {
     <div className="landing-form  d-flex flex-column align-items-center justify-content-between w-100">
       <div className="d-flex flex-column align-items-center justify-content-between w-100 h-50">
         <h3 className="mb-5"> Already a member </h3>
-        <form>
-          <label htmlFor="email">
-            E-mail
+        <form className="w-75"> 
+          <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3">
+            <label htmlFor="email">E-mail</label>
             <input
               type="email"
               name="email"
@@ -42,10 +42,10 @@ const AuthenticationForm = () => {
               onChange={(e) =>
                 setAuthData({ ...authData, email: e.target.value })
               }
-            ></input>
-          </label>
-          <label htmlFor="password">
-            Password
+            />
+          </div>
+          <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3">
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               name="password"
@@ -54,8 +54,8 @@ const AuthenticationForm = () => {
               onChange={(e) =>
                 setAuthData({ ...authData, password: e.target.value })
               }
-            ></input>
-          </label>
+            />
+          </div>
         </form>
       </div>
       <button className="stranded-button" onClick={handleFormSubmit}>

@@ -14,14 +14,28 @@
     
 
     label {
-        width: 100%;
-        margin-bottom: 1.5rem;
+        // width: 100%;
+        // margin-bottom: 1.5rem;
         
-        input {
-            border: 0.25px solid #EEC373;
-            margin-left: 1rem;
-            float: right;
-        }
+    }
+    input {
+        border: 0.25px solid #EEC373;
+        outline: none;
+        border-radius: 16px;
+        // margin-left: 1.5rem;
+        padding: auto;
+        float: right;
+        text-indent: 15px;
+        line-height: 30px;
+        
+        
+    }
+    input:focus{
+        outline: none;
+        border: 1px solid #EEC373;
+        box-shadow: 0 2px 25px rgba(53, 85, 151, 0.5);
+
+
     }
    
 }

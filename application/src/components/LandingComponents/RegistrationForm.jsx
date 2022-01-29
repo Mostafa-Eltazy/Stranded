@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { registerNewUserData } from "./LandingApi";
 
 const RegistrationForm = () => {
-  
   const [userData, setUserData] = useState({});
   const nav = useNavigate();
   const handlFormSubmit = async () => {
@@ -22,9 +21,9 @@ const RegistrationForm = () => {
     <div className="landing-form  d-flex flex-column align-items-center justify-content-between w-100">
       <div className="d-flex flex-column align-items-center justify-content-between w-100">
         <h3 className="mb-5"> Join us</h3>
-        <form>
-          <label htmlFor="first-name">
-            First Name
+        <form className="w-75">
+        <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3">
+            <label htmlFor="first-name">First Name</label>
             <input
               type="text"
               name="first-name"
@@ -33,10 +32,10 @@ const RegistrationForm = () => {
               onChange={(e) =>
                 setUserData({ ...userData, fname: e.target.value })
               }
-            ></input>
-          </label>
-          <label htmlFor="last-name">
-            Last Name
+            />
+          </div>
+          <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3">
+            <label htmlFor="last-name">Last Name</label>
             <input
               type="text"
               name="last-name"
@@ -45,11 +44,11 @@ const RegistrationForm = () => {
               onChange={(e) =>
                 setUserData({ ...userData, lname: e.target.value })
               }
-            ></input>
-          </label>
+            />
+          </div>
           <hr style={{ backgroundColor: "black", width: "100%" }} />
-          <label htmlFor="email">
-            E-mail
+          <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3">
+            <label htmlFor="email">E-mail</label>
             <input
               type="email"
               name="email"
@@ -58,10 +57,10 @@ const RegistrationForm = () => {
               onChange={(e) =>
                 setUserData({ ...userData, email: e.target.value })
               }
-            ></input>
-          </label>
-          <label htmlFor="passwword">
-            Password
+            />
+          </div>
+          <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3">
+            <label htmlFor="passwword">Password</label>
             <input
               type="passwword"
               name="passwword"
@@ -70,11 +69,11 @@ const RegistrationForm = () => {
               onChange={(e) =>
                 setUserData({ ...userData, password: e.target.value })
               }
-            ></input>
-          </label>
+            />
+          </div>
           <hr style={{ backgroundColor: "black", width: "100%" }} />
-          <label htmlFor="user-name">
-            User Name
+          <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3">
+            <label htmlFor="user-name">User Name</label>
             <input
               type="text"
               name="user-name"
@@ -83,21 +82,23 @@ const RegistrationForm = () => {
               onChange={(e) =>
                 setUserData({ ...userData, username: e.target.value })
               }
-            ></input>
-          </label>
-          <label htmlFor="profile-photo">
-            Profile + Photo
-            <input
-              type="file"
-              name="profile-photo"
-              id="profile-photo"
-              placeholder="please upload your profile photo."
-              style={{ display: "none" }}
-              onChange={(e) =>
-                setUserData({ ...userData, file: e.target.value })
-              }
             />
-          </label>
+          </div>
+          <div className="d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3">
+            <label htmlFor="profile-photo">
+              Profile + Photo
+              <input
+                type="file"
+                name="profile-photo"
+                id="profile-photo"
+                placeholder="please upload your profile photo."
+                style={{ display: "none" }}
+                onChange={(e) =>
+                  setUserData({ ...userData, file: e.target.value })
+                }
+              />
+            </label>
+          </div>
         </form>
       </div>
       <button className="stranded-button" onClick={handlFormSubmit}>
