@@ -3,6 +3,7 @@ import Posts from "./Posts";
 import UserCard from "../shared/UserCard";
 import { useEffect } from "react";
 import { useUserContext } from "../UserData/Context";
+import Pagination from "./Pagination";
 
 const HomeLayout = ({ home_page_data }) => {
   const { USER_Context_State, dispatch } = useUserContext();
@@ -16,6 +17,7 @@ const HomeLayout = ({ home_page_data }) => {
         <div className="row mt-4 ">
           <div className="col-md-9 flow d-flex flex-column align-items-center main-column">
             <Posts posts_list={home_page_data?.posts} />
+            <Pagination/>
           </div>
           {USER_Context_State?.user?.user ? (
             <div

@@ -19,16 +19,38 @@ class PostController extends AbstractController
 {
     // FOR FETCHING A LIST OF POSTS
     /**
-     * @Route("/", name="get_post_list", methods={"GET"})
+     * @Route("/{page}", name="get_post_list", methods={"GET"})
      */
-    public function postList()
+    public function postList($page, Request $request)
     {
-        $posts = $this->getDoctrine()
+        $limit = $request->get('limit');
+        $offset = $limit * $page - 1;
+
+        $totalPosts = $this->getDoctrine()
+            ->getManager()
             ->getRepository(Post::class)
-            ->findAll();
+            ->createQueryBuilder('a')
+            ->select('count(a.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $posts = $this->getDoctrine()
+            ->getManager()
+            ->createQueryBuilder()
+            ->add('select', 'posts')
+            ->add('from', 'App\Entity\Post posts')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
 
         return $this->json(
-            ['posts' => $posts],
+            [
+                'page' => $page,
+                'limit' => $limit,
+                'totalPosts' => $totalPosts,
+                'posts' => $posts,
+            ],
             200,
             [],
             [
@@ -92,7 +114,6 @@ class PostController extends AbstractController
         $newPost->setDate(new DateTime($request->request->all()['date']));
         $newPost->setIsEdited(false);
 
-
         $em->persist($newPost);
         $em->flush();
         return $this->json(
@@ -117,8 +138,8 @@ class PostController extends AbstractController
     {
         // $newPost = new Post();
         $currentPost = $this->getDoctrine()
-        ->getRepository(Post::class)
-        ->find($request->request->all()['post_id']);
+            ->getRepository(Post::class)
+            ->find($request->request->all()['post_id']);
         // Uplaod a file into the project
         if ($request->files->get('file')) {
             $uploads_directory = 'uploads_directory';
@@ -130,9 +151,10 @@ class PostController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $currentPost->setTitle($request->request->all()['title']);
         $currentPost->setContent($request->request->all()['content']);
-        $currentPost->setEditDate(new DateTime($request->request->all()['date']));
+        $currentPost->setEditDate(
+            new DateTime($request->request->all()['date'])
+        );
         $currentPost->setIsEdited(true);
-
 
         $entityManager->flush();
 

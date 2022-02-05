@@ -189,3 +189,26 @@ $screen_size__xxs: 425px; // phone
     width: 100%;
   }
 }
+
+.pagination-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  li {
+    border: 1px solid silver;
+    border-radius: 50%;
+    padding: 0.4rem 1rem;
+    list-style-type: none;
+    background: linear-gradient(
+      rgba(170, 183, 236, 0.6),
+      rgba(51, 51, 71, 0.678)
+    );
+    margin: 10px 10px;
+    &.active {
+      background: linear-gradient(
+      rgba(77, 100, 192, 0.6),
+      rgba(191, 191, 238, 0.678)
+    );
+    }
+  }
+}

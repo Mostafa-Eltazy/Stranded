@@ -7,11 +7,10 @@ import HomeLayout from "../components/homeComponents/Homelayout";
 const Home = () => {
   const [data, setData] = useState(null);
   useEffect(() => {
-    const getHomePageData = async () => {
+    (async () => {
       const homePageData = await HomeApi.getHomePageData();
       setData(homePageData);
-    };
-    getHomePageData();
+    })();
   }, []);
   return (
     <>
