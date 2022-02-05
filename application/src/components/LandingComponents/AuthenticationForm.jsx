@@ -89,7 +89,7 @@ const AuthenticationForm = () => {
                   setAuthData({ ...authData, password: e.target.value })
                 }
               />
-              <label htmlFor="eye">
+              <label style={{cursor:"pointer"}} htmlFor="eye">
                 <i
                   className={`${
                     hidden ? "far fa-eye-slash" : "far fa-eye"
@@ -102,7 +102,7 @@ const AuthenticationForm = () => {
                 onClick={() => {
                   isHidden(!hidden);
                 }}
-                hidden="true"
+                hidden={true}
               />
             </div>
             {errors.password && (

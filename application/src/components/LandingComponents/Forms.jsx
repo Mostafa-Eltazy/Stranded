@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AuthenticationForm from "./AuthenticationForm";
 import RegistrationForm from "./RegistrationForm";
+import { StepOne, StepTwo, StepThree } from "./RegistrationForm";
 
 const Forms = () => {
   const [change, setChange] = useState(true);
@@ -25,7 +26,15 @@ const Forms = () => {
           Register{" "}
         </button>
       </div>
-      {change ? <AuthenticationForm /> : <RegistrationForm />}
+      {change ? (
+        <AuthenticationForm />
+      ) : (
+        <RegistrationForm>
+          <StepOne />
+          <StepTwo />
+          <StepThree />
+        </RegistrationForm>
+      )}
     </div>
   );
 };

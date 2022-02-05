@@ -1,45 +1,99 @@
 .landing-form {
-    
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    // background:linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
-    ;
-    padding: 1.25rem;
-    border-radius: 25px;
-    border: 1px solid #C7B198;
-    box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
-    min-height: 35rem;
-    
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  // background:linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+  padding: 1.25rem;
+  border-radius: 25px;
+  border: 1px solid #c7b198;
+  box-shadow: 0 2px 25px rgba(53, 85, 151, 0.2);
+  min-height: 35rem;
 
-    label {
-        // width: 100%;
-        // margin-bottom: 1.5rem;
-        
-    }
-    input {
-        border: 0.25px solid #EEC373;
-        outline: none;
-        border-radius: 16px;
-        // margin-left: 1.5rem;
-        padding: auto;
-        float: right;
-        text-indent: 15px;
-        line-height: 30px;
-        
-        
-    }
-    input:focus{
-        outline: none;
-        border: 1px solid #EEC373;
-        box-shadow: 0 2px 25px rgba(53, 85, 151, 0.5);
-
-
-    }
-   
+  label {
+    // width: 100%;
+    // margin-bottom: 1.5rem;
+  }
+  input {
+    border: 0.25px solid #eec373;
+    outline: none;
+    border-radius: 16px;
+    // margin-left: 1.5rem;
+    padding: auto;
+    float: right;
+    text-indent: 15px;
+    line-height: 30px;
+  }
+  input:focus {
+    outline: none;
+    border: 1px solid #eec373;
+    box-shadow: 0 2px 25px rgba(53, 85, 151, 0.5);
+  }
 }
 
 .form-alert {
-    color:#ce2029
+  color: #ce2029;
+}
+
+.reg-bar {
+  span {
+    border: 1px solid #eec373;
+    border-radius: 50%;
+    padding: 0.4rem 1rem;
+    list-style-type: none;
+    background: rgba(230, 221, 221, 0.884);
+    &.active {
+      border: 1px solid #89c25b;
+    }
+    &.missing {
+        border: 1px solid #e6685f;
+      }
+  }
+  hr {
+    position: relative;
+    top: 5px;
+    width: 100%;
+    background: #fff;
+    &.active {
+      background: #00ff37;
+    }
+    &.missing {
+        background: #e20808;
+      }
+  }
+}
+
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 20px;
+  line-height: 20px;
+  display: block;
+  font-size: 10px;
+  color: #333;
+  background: white;
+  border-radius: 3px;
+  margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  left: -50%;
+  top: 9px;
+  z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,
+#progressbar li.active:after {
+  background: #27ae60;
+  color: white;
 }
