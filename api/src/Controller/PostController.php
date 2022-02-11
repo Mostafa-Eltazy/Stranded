@@ -24,7 +24,7 @@ class PostController extends AbstractController
     public function postList($page, Request $request)
     {
         $limit = $request->get('limit');
-        $offset = $limit * $page - 1;
+        $offset = $limit * ($page - 1);
 
         $totalPosts = $this->getDoctrine()
             ->getManager()
