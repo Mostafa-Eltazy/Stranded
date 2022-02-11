@@ -1,22 +1,14 @@
-import React, { useState, useEffect } from "react";
-import Header from "../components/shared/Header";
-import Footer from "../components/shared/Footer";
-import HomeApi from "../components/homeComponents/HomeApi";
+import React from "react";
 import HomeLayout from "../components/homeComponents/Homelayout";
+import Footer from "../components/shared/Footer";
+import Header from "../components/shared/Header";
 
 const Home = () => {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    (async () => {
-      const homePageData = await HomeApi.getHomePageData();
-      setData(homePageData);
-    })();
-  }, []);
   return (
     <>
       <Header />
       <div className="page-wrapper">
-        <HomeLayout home_page_data={data} />;
+        <HomeLayout  />;
       </div>
       <Footer />
     </>
