@@ -3,7 +3,6 @@ import { BiRadio } from "react-icons/bi";
 import { GiIsland } from "react-icons/gi";
 import { GiAirplaneDeparture, GiAirplaneArrival } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import { useToken } from "../CustomHooks/useToken";
 import { useUserContext } from "../UserData/Context";
 import { actions } from "../UserData/Reducer";
 
@@ -23,7 +22,6 @@ const Header = () => {
   const handelLogout = (e) => {
     // e.preventDefault()
     setToActive("departure");
-    localStorage.removeItem("token");
     dispatch({ type: actions.LOGOUT });
   };
   return (

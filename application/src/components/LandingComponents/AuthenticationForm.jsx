@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useToken } from "../CustomHooks/useToken";
+import { setAuthToken } from "../../util/token-storage";
 import { useUserContext } from "../UserData/Context";
 import { actions } from "../UserData/Reducer";
 import { authinticateUser } from "./LandingApi";
@@ -9,7 +9,7 @@ const AuthenticationForm = () => {
   const [authData, setAuthData] = useState({});
   const [hidden, isHidden] = useState(true);
   const { USER_Context_State, dispatch } = useUserContext();
-  const [token, setToken] = useToken();
+
   const {
     register,
     handleSubmit,
@@ -19,16 +19,14 @@ const AuthenticationForm = () => {
   useEffect(() => {
     console.log("User context state", USER_Context_State);
   }, [USER_Context_State]);
+
   const handleFormSubmit = async () => {
     try {
       dispatch({ type: actions.LOGIN_START });
-      const { status, data } = await authinticateUser(authData);
-      if (status === 200) {
-        const { token } = data;
-        setToken(token);
-
-        window.location.reload();
-      }
+      const { data } = await authinticateUser(authData);
+      const { token } = data;
+      setAuthToken(token);
+      window.location.reload();
     } catch (err) {
       dispatch({ type: actions.LOGIN_FAIL });
       console.log("Authintication Failed due to:", err);
