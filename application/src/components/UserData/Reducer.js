@@ -1,21 +1,21 @@
+import { clearAuthToken } from "../../util/token-storage";
+
 const actions = {
   LOGIN_START: "fetch_user_data",
   LOGIN_PASS: "user_passed",
   LOGIN_FAIL: "user_failed",
-  LOGOUT:"user_removed"
+  LOGOUT: "user_removed",
 };
 
-// const status = {
-// };
 const USER_REDUCER = (state, action) => {
   switch (action.type) {
-    case "fetch_user_data": {
+    case actions.LOGIN_START: {
       return {
         ...state,
         isFetching: true,
       };
     }
-    case "user_passed": {
+    case actions.LOGIN_PASS: {
       const { data } = action;
       return {
         ...state,
@@ -24,7 +24,7 @@ const USER_REDUCER = (state, action) => {
         error: false,
       };
     }
-    case "user_failed": {
+    case actions.LOGIN_FAIL: {
       return {
         ...state,
         user: null,
@@ -32,13 +32,14 @@ const USER_REDUCER = (state, action) => {
         error: true,
       };
     }
-    case "user_removed" : {
+    case actions.LOGOUT: {
+      clearAuthToken();
       return {
         ...state,
-        user:null,
+        user: null,
         isFetching: false,
         error: false,
-      }
+      };
     }
 
     default:

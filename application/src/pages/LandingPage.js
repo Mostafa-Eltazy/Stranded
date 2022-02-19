@@ -6,13 +6,13 @@ import Header from "../components/shared/Header";
 import { useUserContext } from "../components/UserData/Context";
 
 const LandingPage = () => {
-  const { USER_Context_State, dispatch } = useUserContext();
+  const { USER_Context_State } = useUserContext();
   const nav = useNavigate();
   useEffect(() => {
-    if (USER_Context_State.user !== null) {
+    if (USER_Context_State.user) {
       nav("/dispatch");
     }
-  }, [USER_Context_State.user]);
+  }, [USER_Context_State.user, nav]);
   return (
     <div>
       <Header />
