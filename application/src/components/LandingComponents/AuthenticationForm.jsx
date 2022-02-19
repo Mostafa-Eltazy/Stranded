@@ -1,15 +1,15 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { authinticateUser } from "./LandingApi";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useToken } from "../CustomHooks/useToken";
 import { useUserContext } from "../UserData/Context";
 import { actions } from "../UserData/Reducer";
-import { useForm } from "react-hook-form";
+import { authinticateUser } from "./LandingApi";
 
 const AuthenticationForm = () => {
   const [authData, setAuthData] = useState({});
   const [hidden, isHidden] = useState(true);
   const { USER_Context_State, dispatch } = useUserContext();
+  const [token, setToken] = useToken();
   const {
     register,
     handleSubmit,
@@ -19,15 +19,15 @@ const AuthenticationForm = () => {
   useEffect(() => {
     console.log("User context state", USER_Context_State);
   }, [USER_Context_State]);
-  const nav = useNavigate();
   const handleFormSubmit = async () => {
     try {
       dispatch({ type: actions.LOGIN_START });
       const { status, data } = await authinticateUser(authData);
       if (status === 200) {
-        // localStorage.setItem("user_data", JSON.stringify(data));
-        dispatch({ type: actions.LOGIN_PASS, data });
-        nav("/dispatch");
+        const { token } = data;
+        setToken(token);
+
+        window.location.reload();
       }
     } catch (err) {
       dispatch({ type: actions.LOGIN_FAIL });
@@ -89,7 +89,7 @@ const AuthenticationForm = () => {
                   setAuthData({ ...authData, password: e.target.value })
                 }
               />
-              <label style={{cursor:"pointer"}} htmlFor="eye">
+              <label style={{ cursor: "pointer" }} htmlFor="eye">
                 <i
                   className={`${
                     hidden ? "far fa-eye-slash" : "far fa-eye"

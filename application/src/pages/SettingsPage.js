@@ -13,7 +13,7 @@ const SettingsPage = ()=> {
     return (
         <div>
             <Header/>
-            this is the settings settings page
+            Loading Page
             <Footer/>
         </div>
     )

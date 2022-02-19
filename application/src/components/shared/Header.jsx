@@ -3,6 +3,7 @@ import { BiRadio } from "react-icons/bi";
 import { GiIsland } from "react-icons/gi";
 import { GiAirplaneDeparture, GiAirplaneArrival } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { useToken } from "../CustomHooks/useToken";
 import { useUserContext } from "../UserData/Context";
 import { actions } from "../UserData/Reducer";
 
@@ -15,16 +16,16 @@ const Header = () => {
       ? ""
       : "arrival"
   );
-  
+
   const setToActive = (dir) => {
     setActive(dir);
   };
-  const handelLogout = (e)=> {
+  const handelLogout = (e) => {
     // e.preventDefault()
-    setToActive("departure")
-    
-    dispatch({type:actions.LOGOUT})
-  }
+    setToActive("departure");
+    localStorage.removeItem("token");
+    dispatch({ type: actions.LOGOUT });
+  };
   return (
     <header className="header px-3 py-3">
       <div className="container d-flex justify-content-between mt-4">

@@ -8,8 +8,9 @@ const EmptyPostLayout = () => {
         <div className="row mt-4">
           <div className="col-md-9 flow d-flex flex-column align-items-center main-column">
            <WriteEntryForm className="mt-2"/>
+           
           </div>
-          <div className="col-md-3 flow mt-4 mt-md-0">left column</div>
+          <div className="col-md-3 flow mt-4 mt-md-0">left oo column</div>
         </div>
       </div>
     </>

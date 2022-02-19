@@ -99,7 +99,7 @@ const PostCard = ({ post }) => {
               {post.isEdited && <span>Edited</span>}
             </div>
           </div>
-          <div className="d-flex flex-column  mt-1 mx-2">
+          <div className="d-flex flex-column  mt-1 mx-2 w-100">
             <h6 className="d-flex align-items-center justify-content-between mb-0">
               <Link
                 to={`/entry/${post.id}`}
@@ -129,22 +129,8 @@ const PostCard = ({ post }) => {
               ) : null}
             </h6>
             {post.title && <hr className="my-1" />}
-            <p className="text-wrap">
-              {post.content} Lorem ipsum dolor sit, amet consectetur adipisicing
-              elit. Provident officiis iure ab quam earum ducimus nobis
-              cupiditate recusandae ratione? Tenetur dicta asperiores expedita,
-              soluta molestias sequi porro accusamus pariatur fugit. Lorem ipsum
-              dolor, sit amet consectetur adipisicing elit. Enim nemo, modi
-              nihil soluta praesentium, maxime ipsam voluptate quisquam quia
-              facere natus ipsa voluptates perspiciatis quas harum. Autem maxime
-              quaerat natus? Lorem ipsum dolor sit, amet consectetur adipisicing
-              elit. Provident officiis iure ab quam earum ducimus nobis
-              cupiditate recusandae ratione? Tenetur dicta asperiores expedita,
-              soluta molestias sequi porro accusamus pariatur fugit. Lorem ipsum
-              dolor, sit amet consectetur adipisicing elit. Enim nemo, modi
-              nihil soluta praesentium, maxime ipsam voluptate quisquam quia
-              facere natus ipsa voluptates perspiciatis quas harum. Autem maxime
-              quaerat natus?{" "}
+            <p className="">
+              {post.content} 
             </p>
           </div>
         </div>

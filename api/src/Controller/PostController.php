@@ -65,7 +65,7 @@ class PostController extends AbstractController
 
     //FOR FETCHING A POST WITH ID
     /**
-     * @Route("/{id}", name="get_post", methods={"GET"})
+     * @Route("/single/{id}", name="get_post", methods={"GET"})
      */
     public function getPost($id)
     {

@@ -1,5 +1,7 @@
 import axios from "axios";
 const REACT_APP_API_BASEURL = `${process.env.REACT_APP_API_BASEURL}/users`;
+const REACT_APP_API_BASEURL_AUTH = `${process.env.REACT_APP_API_BASEURL}`;
+
 
 
 const registerNewUserData = async (entryData) => {
@@ -21,9 +23,9 @@ const registerNewUserData = async (entryData) => {
   const authinticateUser = async(authData) => {
     return axios({
       method: "post",
-      url: `${REACT_APP_API_BASEURL}/auth`,
+      url: `${REACT_APP_API_BASEURL_AUTH}/api/login`,
       data: {
-        "email":authData.email,
+        "username":authData.email,
         "password":authData.password
       },
       headers: { "Content-Type": "application/json" },

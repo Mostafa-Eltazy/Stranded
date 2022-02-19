@@ -202,7 +202,7 @@ export const StepTwo = ({
             required: { value: true, message: "E-mail is a Requirment" },
             pattern: {
               value:
-              /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
+                /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
               message: "Invalid E-mail !",
             },
           })}
@@ -242,7 +242,7 @@ export const StepTwo = ({
             setUserData({ ...userData, password: e.target.value })
           }
         />
-        <label style={{cursor:"pointer"}} htmlFor="eye">
+        <label style={{ cursor: "pointer" }} htmlFor="eye">
           <i
             className={`${hidden ? "far fa-eye-slash" : "far fa-eye"} mt-2`}
           ></i>
@@ -298,13 +298,13 @@ export const StepThree = ({
           {...register("userName", {
             required: { value: true, message: "User Name is a Requirment" },
             // pattern: {
-              //   value: /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
-              //   message: "Invalid UserName",
-              // },
-            })}
-            onChange={(e) =>
-              setUserData({ ...userData, username: e.target.value })
-            }
+            //   value: /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/,
+            //   message: "Invalid UserName",
+            // },
+          })}
+          onChange={(e) =>
+            setUserData({ ...userData, username: e.target.value })
+          }
         />
       </div>
       {errors.userName && (

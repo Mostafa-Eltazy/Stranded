@@ -70,7 +70,7 @@ class UserController extends AbstractController
             ]
         );
     }
-    
+
     //FOR ADDING A NEW USER
     /**
      *@Route("/add", name="post_user", methods={"POST"})
@@ -133,7 +133,7 @@ class UserController extends AbstractController
     {
         $request = json_decode($request->getContent(), true);
         $entityManager = $this->getDoctrine()->getManager();
-        
+
         $currentUser = $this->getDoctrine()
             ->getRepository(User::class)
             ->find($id);
@@ -144,7 +144,7 @@ class UserController extends AbstractController
         $currentUser->setLname($request['lname']);
 
         $entityManager->flush();
-        
+
         return $this->json(
             ['updated_user' => $currentUser],
             200,
@@ -168,7 +168,7 @@ class UserController extends AbstractController
         $user_to_delte = $this->getDoctrine()
             ->getRepository(User::class)
             ->find($id);
-            
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($user_to_delte);
         $em->flush();
@@ -188,7 +188,7 @@ class UserController extends AbstractController
         $user = $this->getDoctrine()
             ->getRepository(User::class)
             ->findOneBy(['email' => $request['email']]);
-    
+
         if (
             $this->passwordHasher->isPasswordValid($user, $request['password'])
         ) {
@@ -207,5 +207,30 @@ class UserController extends AbstractController
         } else {
             return $this->json(['wrong password inforamtion']);
         }
+    }
+
+    //FOR FETCHING A USER WITH EMAIL AND PASSWORD
+    /**
+     * @Route("/data", name="fetch_user", methods={"GET","POST"})
+     */
+    public function fetchUser(Request $request)
+    {
+        $request = json_decode($request->getContent(), true);
+        $user = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findOneBy(['username' => $request['username']]);
+
+        return $this->json(
+            ['user' => $user],
+            200,
+            [],
+            [
+                ObjectNormalizer::CIRCULAR_REFERENCE_HANDLER => function (
+                    $obj
+                ) {
+                    return $obj->getId();
+                },
+            ]
+        );
     }
 }

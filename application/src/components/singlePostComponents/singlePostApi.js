@@ -18,7 +18,7 @@ const postSingleEntryData = async (entryData) => {
 const getSingleEntryData = async (id) => {
   return axios({
     method: "get",
-    url: `${REACT_APP_API_BASEURL}/${id}`,
+    url: `${REACT_APP_API_BASEURL}/single/${id}`,
     headers: { "Content-Type": "multipart/form-data" },
   });
 };

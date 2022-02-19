@@ -17,7 +17,7 @@ const ExistantPostLayout = ({ post_id }) => {
       console.log("faild due to :", err);
     }
   }, [post_id]);
-  console.log(postData);
+  console.log("qqqqqqqqqqqqqqqqqqqqqq",postData);
   return (
     <div>
       <>
@@ -28,7 +28,7 @@ const ExistantPostLayout = ({ post_id }) => {
                 <ReadEntryForm post_data={postData?.post} />
               ) : null}
             </div>
-            <div className="col-md-3 flow mt-4 mt-md-0">left column</div>
+            <div className="col-md-3 flow mt-4 mt-md-0">left oo column</div>
           </div>
         </div>
       </>
