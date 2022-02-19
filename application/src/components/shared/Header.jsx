@@ -3,7 +3,6 @@ import { BiRadio } from "react-icons/bi";
 import { GiIsland } from "react-icons/gi";
 import { GiAirplaneDeparture, GiAirplaneArrival } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import { clearAuthToken } from "../../util/token-storage";
 import { useUserContext } from "../UserData/Context";
 import { actions } from "../UserData/Reducer";
 
