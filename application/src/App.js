@@ -22,16 +22,6 @@ function App() {
         const token = getAuthToken();
         if (token) {
           const tokenPayload = JSON.parse(atob(token.split(".")[1]));
-          console.log(
-            "xx",
-            JSON.parse(
-              atob(
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NDUyMDE3NTEsImV4cCI6MTY0NTIwNTM1MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiciJ9.BomyMZ9zxAUNIUYqt2E3n7VJncD9fBV1B9V_boJliO3UedkopsxRTX_MTcCPIbwV47brLEoHZHZOVfyEUOkR6SgZjslsXC0emuuZ-2NBpQeN7A_4u6sEbD2hsI0UtN1aA05Iry0tOuvyqOCcjMX_oKoFy7zq-Fsht0zUpMa4mwTySB5TrJQ1iUzuH9HAMdjN8xk58BqBqkK7nY0Mx3NQu2CCLZvBUkKkdeOrMb56uDyc3vrpeu2uLnKX6DtTHHo-j7ALU9BVtI3aoqLVhMRtu6FoQNJkctxR3NROYJB5NkD0Jw1AA0FvcFdCp3VNNUOP28lOcjmmHidB_dPJn9PgGg".split(
-                  "."
-                )[1]
-              )
-            )
-          );
           const { username } = tokenPayload;
           const { data } = await axios({
             method: "post",
@@ -91,9 +81,9 @@ function App() {
           <Route
             path="/entry/:id"
             element={
-              // <PrivateRoute>
-              <SinglePostPage />
-              // </PrivateRoute>
+              <PrivateRoute>
+                <SinglePostPage />
+              </PrivateRoute>
             }
           />
           <Route
